@@ -83,6 +83,8 @@ fabric.properties
 ### Intellij Patch ###
 # Comment Reason: https://github.com/joeblau/gitignore.io/issues/186#issuecomment-215987721
 
+.idea
+
 # *.iml
 # modules.xml
 # .idea/misc.xml
@@ -157,5 +159,7 @@ mvnw.cmd
 .project
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
+
+HELP.md
 
 # End of https://www.toptal.com/developers/gitignore/api/intellij,java,maven
