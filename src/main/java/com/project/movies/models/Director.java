@@ -21,13 +21,13 @@ public class Director {
     @JoinTable(name = "director_films",
             joinColumns = @JoinColumn(name = "director_id"),
             inverseJoinColumns = @JoinColumn(name = "film_id"))
-    private List<Movie> movies = new ArrayList<>();
+    private List<Film> movies = new ArrayList<>();
 
 
     public Director() {
     }
 
-    public Director(Long Id,String name, String sername, String description, String url, List<Movie> movies) {
+    public Director(Long Id,String name, String sername, String description, String url, List<Film> movies) {
         this.Id = Id;
         this.name = name;
         this.sername = sername;
@@ -76,11 +76,11 @@ public class Director {
         this.url = url;
     }
 
-    public List<Movie> getMovies() {
+    public List<Film> getMovies() {
         return movies;
     }
 
-    public void setMovies(List<Movie> movies) {
+    public void setMovies(List<Film> movies) {
         this.movies = movies;
     }
 }

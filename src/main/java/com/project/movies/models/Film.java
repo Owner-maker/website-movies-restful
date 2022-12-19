@@ -1,12 +1,10 @@
 package com.project.movies.models;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "films")
-public class Movie {
+public class Film {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,9 +18,9 @@ public class Movie {
     private String url;
     private String director;
 
-    public Movie(){}
+    public Film(){}
 
-    public Movie(String title, int time, String type, int year, String text, String url,String director) {
+    public Film(String title, int time, String type, int year, String text, String url, String director) {
         this.title = title;
         this.time = time;
         this.type = type;
