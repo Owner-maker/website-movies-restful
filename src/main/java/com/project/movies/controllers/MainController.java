@@ -1,7 +1,7 @@
 package com.project.movies.controllers;
 
 import com.project.movies.models.Director;
-import com.project.movies.models.Movie;
+import com.project.movies.models.Film;
 import com.project.movies.models.User;
 import com.project.movies.repository.DirectorRepository;
 import com.project.movies.repository.FilmRepository;
@@ -28,7 +28,7 @@ public class MainController {
 
     @GetMapping("/allmovies")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-    public List<Movie> getAllMovies(){
+    public List<Film> getAllMovies(){
         return filmRepository.findAll();
     }
 
@@ -46,26 +46,26 @@ public class MainController {
 
     @GetMapping("/getmovie/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public Movie getMovieById(@PathVariable Long id){
+    public Film getMovieById(@PathVariable Long id){
         return filmRepository.findById(id).orElseThrow(() -> new RuntimeException("Error, movie with id = " + id +"  is not found"));
     }
 
     @PostMapping ("/addmovie")
     @PreAuthorize("hasRole('ADMIN')")
-    public void addMovie(@RequestBody Movie movie){
+    public void addMovie(@RequestBody Film movie){
         filmRepository.save(movie);
     }
 
     @PostMapping ("/updatemovie/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public void updateMovie(@PathVariable Long id, @RequestBody Movie movie){
-        Movie movieToUpdate = filmRepository.findById(id).orElseThrow(() -> new RuntimeException("Error, movie with id = " + id +"  is not found"));
+    public void updateMovie(@PathVariable Long id, @RequestBody Film movie){
+        Film movieToUpdate = filmRepository.findById(id).orElseThrow(() -> new RuntimeException("Error, movie with id = " + id +"  is not found"));
         movieToUpdate.setText(movie.getText());
         movieToUpdate.setTime(movie.getTime());
         movieToUpdate.setTitle(movie.getTitle());
         movieToUpdate.setType(movie.getType());
         movieToUpdate.setUrl(movie.getUrl());
-        movieToUpdate.setText(movie.getText());
+        movieToUpdate.setYear(movie.getYear());
         filmRepository.save(movieToUpdate);
     }
 
