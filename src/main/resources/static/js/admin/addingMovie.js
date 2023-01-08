@@ -1,10 +1,21 @@
 async function addMovie() {
     let title = document.getElementById("title").value;
     let time = document.getElementById("time").value;
-    let type = document.getElementById("type").value;
     let year = document.getElementById("year").value;
     let text = document.getElementById("text").value;
     let url = document.getElementById("url").value;
+    let type = ""
+    // let type = document.getElementById("type").value;
+    let  moviesTypes = document.querySelectorAll('.options_movies');
+    for (let i = 0; i < moviesTypes.length; i++) {
+        if (moviesTypes[i].checked === true){
+            type += moviesTypes[i].value
+            type += ", "
+        }
+    }
+    if (type.length !== 0){
+        type = type.slice(0,-2)
+    }
 
     if(title!=="" && time!=="" && type!=="" && year !== "" && text!=="" && url!==""){
         let movie = {
@@ -42,4 +53,12 @@ async function addMovie() {
             document.getElementById("message").value = "Film " + title + " wasn't added. Check the fields.";
         }
     }
+}
+
+const checkList = document.getElementById('list1');
+checkList.getElementsByClassName('anchor')[0].onclick = function(evt) {
+    if (checkList.classList.contains('visible'))
+        checkList.classList.remove('visible');
+    else
+        checkList.classList.add('visible');
 }
