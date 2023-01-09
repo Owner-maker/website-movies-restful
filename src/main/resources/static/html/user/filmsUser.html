@@ -3,8 +3,10 @@
 <head>
     <title>FilmsUser</title>
     <link rel="shortcut icon" href="#">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+          integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../../css/filmsUser.css">
     <link rel="stylesheet" type="text/css" href="../../css/index.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -14,12 +16,14 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">Movies Library</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-item nav-link" href="http://localhost:8080/html/user/account.html">Account <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="http://localhost:8080/html/user/account.html">Account <span
+                    class="sr-only">(current)</span></a>
             <a class="nav-item nav-link" href="http://localhost:8080/html/user/filmsUser.html">Movies</a>
             <a class="nav-item nav-link" href="http://localhost:8080/html/user/directoriesUser.html">Directories</a>
             <a class="nav-item nav-link" href="http://localhost:8080/html/user/libraryUser.html">Library</a>
@@ -28,6 +32,49 @@
     </div>
 </nav>
 
+<div class="container" style="color: white; margin-bottom: -10%; margin-top: 20px">
+
+    <div class="form-group" style="font-size: 30px">
+        <label class="control-label">Filter</label>
+    </div>
+    <div class="form-group">
+        <div id="list1" class="dropdown-check-list" tabindex="100">
+            <span class="anchor">Select Type</span>
+            <ul class="items" id="type">
+                <li><input type="checkbox" class="options_movies" value="fantasy"/>fantasy</li>
+                <li><input type="checkbox" class="options_movies" value="action"/>action</li>
+                <li><input type="checkbox" class="options_movies" value="thriller"/>thriller</li>
+                <li><input type="checkbox" class="options_movies" value="adventure"/>adventure</li>
+                <li><input type="checkbox" class="options_movies" value="melodrama"/>melodrama</li>
+                <li><input type="checkbox" class="options_movies" value="crime"/>crime</li>
+                <li><input type="checkbox" class="options_movies" value="comedy"/>comedy</li>
+                <li><input type="checkbox" class="options_movies" value="fiction"/>fiction</li>
+                <li><input type="checkbox" class="options_movies" value="science fiction"/>science fiction</li>
+                <li><input type="checkbox" class="options_movies" value="detective"/>detective</li>
+                <li><input type="checkbox" class="options_movies" value="drama"/>drama</li>
+            </ul>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label">Year: from date</label>
+        <input type="number" id="yearFrom" required pattern="[0-9]{0,4}" min="1888" max="2023">
+    </div>
+    <div class="form-group">
+        <label class="control-label">Year: &nbsp to &nbsp date</label>
+        <input type="number" id="yearTo" required pattern="[0-9]{0,4}" min="1888" max="2023">
+    </div>
+    <div class="form-group">
+        <label class="control-label">Time: min value</label>
+        <input type="number" id="timeFrom" required pattern="[0-9]{0,4}" min="5" max="500">
+    </div>
+    <div class="form-group">
+        <label class="control-label">Time: max value</label>
+        <input type="number" id="timeTo" required pattern="[0-9]{0,4}" min="5" max="500">
+    </div>
+    <div class="form-group" style="display: inline-block">
+        <input type="submit" value="Filter" class="btn float-right login_btn" onclick="filter()">
+    </div>
+</div>
 <div class="container" id="container">
 
 </div>

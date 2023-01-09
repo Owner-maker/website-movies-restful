@@ -1,9 +1,9 @@
-document.addEventListener("DOMContentLoaded", async function() {
+document.addEventListener("DOMContentLoaded", async function () {
 
 
-    if(localStorage.getItem("editingFilmId")!==null) {
+    if (localStorage.getItem("editingFilmId") !== null) {
         let token = 'Bearer ' + localStorage.getItem('token');
-        let response = await fetch('http://localhost:8080/movies/getmovie/'+localStorage.getItem("editingFilmId"), {
+        let response = await fetch('http://localhost:8080/movies/getmovie/' + localStorage.getItem("editingFilmId"), {
             method: 'GET',
             mode: 'cors',
             cache: 'no-cache',
@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", async function() {
             }
         })
 
-        if(response.ok){
+        if (response.ok) {
             let elem = await response.json();
             document.getElementById("title").value = elem.title;
             document.getElementById("time").value = elem.time;
@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", async function() {
             block3.appendChild(h);
             let p0 = document.createElement("p");
             p0.classList.add("card-text");
-            p0.innerText = "ID: " +  localStorage.getItem("editingFilmId");
+            p0.innerText = "ID: " + localStorage.getItem("editingFilmId");
             block3.appendChild(p0);
 
             let p1 = document.createElement("p");
@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", async function() {
             if (elem.director != null) {
                 let p3 = document.createElement("p");
                 p3.classList.add("card-text");
-                p3.innerText = "Director: " + elem.director.name + " " + elem.director.sername;
+                p3.innerText = "Director: " + elem.director;
                 block3.appendChild(p3);
             }
             let p4 = document.createElement("p");
@@ -104,31 +104,34 @@ async function updateMovie() {
     let text = document.getElementById("text").value;
     let url = document.getElementById("url").value;
 
-    let movie = {
-        Id : localStorage.getItem("editingFilmId"),
-        title : title,
-        time : time,
-        type : type,
-        year : year,
-        text : text,
-        url : url
-    }
+    if (title !== "" && time !== "" && type !== "" && year !== "" && text !== "" && url !== "") {
 
-    let token = 'Bearer ' + localStorage.getItem('token');
-    let response = await fetch('http://localhost:8080/movies/updatemovie/' + localStorage.getItem("editingFilmId"), {
-        method: 'POST',
-        mode: 'cors',
-        cache: 'no-cache',
-        credentials: 'same-origin',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': token
-        },
-        body: JSON.stringify(movie)
-    })
+        let movie = {
+            Id: localStorage.getItem("editingFilmId"),
+            title: title,
+            time: time,
+            type: type,
+            year: year,
+            text: text,
+            url: url
+        }
 
-    if (response.ok) {
-        window.location.href = window.location.href;
+        let token = 'Bearer ' + localStorage.getItem('token');
+        let response = await fetch('http://localhost:8080/movies/updatemovie/' + localStorage.getItem("editingFilmId"), {
+            method: 'POST',
+            mode: 'cors',
+            cache: 'no-cache',
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': token
+            },
+            body: JSON.stringify(movie)
+        })
+
+        if (response.ok) {
+            window.location.href = window.location.href;
+        }
     }
 }
 

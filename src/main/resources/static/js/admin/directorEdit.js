@@ -75,30 +75,34 @@ async function updateDirector() {
     let description = document.getElementById("description").value;
     let url = document.getElementById("url").value;
 
-    let director = {
-        Id : localStorage.getItem("editingDirectorId"),
-        name : name,
-        sername : sername,
-        description : description,
-        url : url
+    if (name !== "" && sername !== "" && description !== "" && url !== ""){
+
+        let director = {
+            Id: localStorage.getItem("editingDirectorId"),
+            name: name,
+            sername: sername,
+            description: description,
+            url: url
+        }
+
+        let token = 'Bearer ' + localStorage.getItem('token');
+        let response = await fetch('http://localhost:8080/movies/updatedirector/' + director.Id, {
+            method: 'POST',
+            mode: 'cors',
+            cache: 'no-cache',
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': token
+            },
+            body: JSON.stringify(director)
+        })
+
+        if (response.ok) {
+            window.location.href = window.location.href;
+        }
     }
 
-    let token = 'Bearer ' + localStorage.getItem('token');
-    let response = await fetch('http://localhost:8080/movies/updatedirector/' + director.Id, {
-        method: 'POST',
-        mode: 'cors',
-        cache: 'no-cache',
-        credentials: 'same-origin',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': token
-        },
-        body: JSON.stringify(director)
-    })
-
-    if (response.ok) {
-        window.location.href = window.location.href;
-    }
 }
 
 
